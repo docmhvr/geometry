@@ -19,6 +19,7 @@
 		}
 
 		input {
+			margin-top: 20px;
 			color: black;
 			background-color: white;
 			width: 200px;
@@ -119,6 +120,44 @@
 		}
 
 		function play() {
+			var canvas = document.getElementById("paradraw");
+			var ctx = canvas.getContext("2d");
+			ctx.beginPath();
+			ctx.strokeStyle = "white";
+			ctx.moveTo(100,100);
+			ctx.lineTo(200,100);
+			ctx.stroke();
+			ctx.moveTo(100,100);
+			ctx.lineTo(120,20);
+			ctx.stroke();
+			ctx.beginPath();
+			ctx.strokeStyle = "red";
+			ctx.moveTo(100,110);
+			ctx.lineTo(200,110);
+			ctx.stroke();
+			ctx.beginPath();
+			ctx.strokeStyle = "green";
+			ctx.moveTo(90,100);
+			ctx.lineTo(110,20);
+			ctx.stroke();
+			ctx.beginPath();
+			ctx.strokeStyle = "white";
+			ctx.moveTo(120,20);
+			ctx.lineTo(220,20);
+			ctx.lineTo(200,100);
+			ctx.stroke();
+			ctx.beginPath();
+			ctx.strokeStyle = "red";
+			ctx.moveTo(120,10);
+			ctx.lineTo(220,10);
+			ctx.stroke();
+			ctx.beginPath();
+			ctx.strokeStyle = "green";
+			ctx.moveTo(230,20);
+			ctx.lineTo(210,100);
+			ctx.stroke();
+
+
 
 
 		}
