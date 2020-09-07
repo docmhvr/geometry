@@ -12,46 +12,56 @@
 		}
 
 		canvas {
-			width: 720px;
-			height: 360px;
+			width: 780px;
+			height: 390px;
 			margin: 50px;
 			border: 1px solid white;
 		}
 
 		input {
-			position: fixed;
-			left: 20px;
 			color: black;
 			background-color: white;
+			width: 200px;
 		}
 
-		#a {
-			top: 150px;
+		h1 {
+			color: white;
+			border: solid;
+			width: 250px;
+			align-content: center;
+			display: inline-block;
+			padding: 100px;
+			margin-top: 100px;
+			margin-bottom: 200px;
 		}
 
-		#b {
-			top: 180px;
+		p {
+			border: 2px solid white;
+			padding: 5px;
+			size: 100px;
+			color: white;
+			position: fixed;
+			top: 400px;
+			left: 1000px;
 		}
-
-		#c {
-			top: 230px;
-		}
-
-		#r {
-			top: 260px;
-		}
-
 	</style>
 </head>
 <body>
+	<a href="#head"><p>&#8593</p></a>
+	<div id="head">
+		<a href="#pyth"><h1>PYTHAGORUS</h1></a>
+		<a href="#para"><h1>PARALLELOGRAM</h1></a>
+	</div>
+	<div id="pyth">
 		<input type="range" name="a" id="a" min="0" max="50" step="5" onchange="init()">
 		<input type="range" name="b" id="b" min="0" max="50" step="5" onchange="init()">
 		<input type="button" onclick="check()" value="CHECK" id="c">
 		<input type="button" onclick="reset()" value="RESET" id="r">
-	<div id="pyth">
 		<canvas id="pythdraw"></canvas>
 	</div>
 	<div id="para">
+		<input type="button" onclick="play()" value="PLAY" id="p">
+		<input type="button" onclick="stop()" value="STOP" id="s">
 		<canvas id="paradraw"></canvas>
 	</div>
 
@@ -61,7 +71,6 @@
 			var canvas = document.getElementById("pythdraw");
 			var a = parseInt(document.getElementById("a").value,10);
 			var b = parseInt(document.getElementById("b").value,10);
-			var c = Math.sqrt(Math.pow(a,2)+Math.pow(b,2)).toFixed(2);
 			var ctx = canvas.getContext("2d");
 			// console.log(a,b,(100+a),(100-b))
 			// ctx.fillStyle = "#FF0000";
@@ -73,9 +82,7 @@
 			ctx.lineTo((100+a),100);
 			ctx.lineTo(100,100);
 			ctx.stroke();
-			ctx.font = "10px Arial";
-			ctx.fillStyle = "white";
-			ctx.fillText(a+"^2 + "+b+"^2 = "+c+"^2", 180, 100);
+			
 		}
 
 
@@ -97,8 +104,10 @@
 			ctx.rotate(ang - (Math.PI/2));
 			ctx.fillRect(0,0,c,c);
 			ctx.restore();
-			ctx.font = "8px Arial";
+			ctx.font = "10px Arial";
 			ctx.fillStyle = "white";
+			c = c.toFixed(2);
+			ctx.fillText(a+"^2 + "+b+"^2 = "+c+"^2", 180, 100);
 			ctx.fillText("Area(R)+Area(G)=Area(B)", 180, 130);
 		}
 		
@@ -107,6 +116,14 @@
 			var canvas = document.getElementById("pythdraw");
 			var ctx = canvas.getContext("2d");
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
+		}
+
+		function play() {
+
+
+		}
+
+		function stop() {
 			var canvas = document.getElementById("paradraw");
 			var ctx = canvas.getContext("2d");
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
