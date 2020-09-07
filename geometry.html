@@ -62,7 +62,7 @@
 	</div>
 	<div id="para">
 		<input type="button" onclick="play()" value="PLAY" id="p">
-		<input type="button" onclick="stop()" value="STOP" id="s">
+		<input type="button" onclick="stop()" value="CLEAR" id="s">
 		<canvas id="paradraw"></canvas>
 	</div>
 
@@ -122,43 +122,85 @@
 		function play() {
 			var canvas = document.getElementById("paradraw");
 			var ctx = canvas.getContext("2d");
-			ctx.beginPath();
-			ctx.strokeStyle = "white";
-			ctx.moveTo(100,100);
-			ctx.lineTo(200,100);
-			ctx.stroke();
-			ctx.moveTo(100,100);
-			ctx.lineTo(120,20);
-			ctx.stroke();
-			ctx.beginPath();
-			ctx.strokeStyle = "red";
-			ctx.moveTo(100,110);
-			ctx.lineTo(200,110);
-			ctx.stroke();
-			ctx.beginPath();
-			ctx.strokeStyle = "green";
-			ctx.moveTo(90,100);
-			ctx.lineTo(110,20);
-			ctx.stroke();
-			ctx.beginPath();
-			ctx.strokeStyle = "white";
-			ctx.moveTo(120,20);
-			ctx.lineTo(220,20);
-			ctx.lineTo(200,100);
-			ctx.stroke();
-			ctx.beginPath();
-			ctx.strokeStyle = "red";
-			ctx.moveTo(120,10);
-			ctx.lineTo(220,10);
-			ctx.stroke();
-			ctx.beginPath();
-			ctx.strokeStyle = "green";
-			ctx.moveTo(230,20);
-			ctx.lineTo(210,100);
-			ctx.stroke();
+			function first() {
+				ctx.beginPath();
+				ctx.strokeStyle = "white";
+				ctx.moveTo(100,100);
+				ctx.lineTo(200,100);
+				ctx.stroke();
+				ctx.moveTo(100,100);
+				ctx.lineTo(120,20);
+				ctx.stroke();
+			}
+			ctx.fillStyle = "white";
+			ctx.font = "8px Arial";
+			ctx.fillText("Drawing two random lines",50,120);
+			first();
 
+			var i = 100;
+			var j = 0;
 
+			var reds = setInterval(red,100);
+			var greens = setInterval(green,100);
 
+			function red() {
+				if(i >= 0){
+					ctx.beginPath();
+					ctx.strokeStyle = "red";
+					ctx.moveTo(100+(20 - i/5),i+10);
+					ctx.lineTo(200+(20 - i/5),i+10);
+					ctx.stroke();
+					i-=10;
+					if (i==40) {
+						ctx.fillText("Taking equal distance by arc",50,130);
+					}
+				}
+				else{
+					clearInterval(reds)
+				}
+			}
+			// var i;
+			// for (i = 100; i >= 0 ; i-=10) {
+			// 	ctx.beginPath();
+			// 	ctx.strokeStyle = "red";
+			// 	ctx.moveTo(100+(20 - i/5),i+10);
+			// 	ctx.lineTo(200+(20 - i/5),i+10);
+			// 	ctx.stroke();
+			// }	
+
+			function green() {
+				if(j <= 120){
+					ctx.beginPath();
+					ctx.strokeStyle = "green";	
+					ctx.moveTo(90+j,100);
+					ctx.lineTo(110+j,20);
+					ctx.stroke();
+					j+=10;
+				}
+				else{
+					clearInterval(greens);
+					ctx.fillText("Joined forms a Parallelogram",50,140);
+					last();
+					first();
+				}
+			}
+			// var j;
+			// for (j = 0; j <= 120; j+=10) {
+			// 	ctx.beginPath();
+			// 	ctx.strokeStyle = "green";	
+			// 	ctx.moveTo(90+j,100);
+			// 	ctx.lineTo(110+j,20);
+			// 	ctx.stroke();
+			// }
+
+			function last() {
+				ctx.beginPath();
+				ctx.strokeStyle = "white";
+				ctx.moveTo(120,20);
+				ctx.lineTo(220,20);
+				ctx.lineTo(200,100);
+				ctx.stroke();
+			}
 
 		}
 
